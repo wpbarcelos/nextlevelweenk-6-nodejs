@@ -1,21 +1,14 @@
-import { Column, CreateDateColumn, Entity, PrimaryColumn, UpdateDateColumn, } from "typeorm";
-import { v4 as uuid } from 'uuid';
+import { Column, CreateDateColumn, Entity, PrimaryColumn, UpdateDateColumn } from "typeorm";
+import { v4 as uuid } from 'uuid'
 
 @Entity()
-export class User {
+export class Tag {
 
     @PrimaryColumn()
     id: string;
 
     @Column()
     name: string;
-
-    @Column()
-    email: string;
-
-    @Column('boolean')
-    admin: boolean;
-
 
     @CreateDateColumn()
     createdAt: Date;
@@ -28,4 +21,5 @@ export class User {
             this.id = uuid();
         }
     }
+
 }

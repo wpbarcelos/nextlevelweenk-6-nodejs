@@ -5,6 +5,15 @@ import { CreateTagService } from '../services/CreateTagService';
 
 class TagController {
 
+
+    async index(req: Request, res: Response) {
+        const tagRepository = getRepository(Tag);
+
+        const tags = await tagRepository.find({});
+
+        return res.json(tags);
+    }
+
     async store(req: Request, res: Response) {
         const { name } = req.body
 

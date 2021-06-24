@@ -1,7 +1,7 @@
 import { Column, CreateDateColumn, Entity, PrimaryColumn, UpdateDateColumn, } from "typeorm";
 import { v4 as uuid } from 'uuid';
 
-@Entity()
+@Entity('users')
 export class User {
 
     @PrimaryColumn()
@@ -13,15 +13,18 @@ export class User {
     @Column()
     email: string;
 
+    @Column()
+    password: string;
+
     @Column('boolean')
     admin: boolean;
 
 
     @CreateDateColumn()
-    createdAt: Date;
+    created_at: Date;
 
     @UpdateDateColumn()
-    updatedAt: Date;
+    updated_at: Date;
 
     constructor() {
         if (!this.id) {

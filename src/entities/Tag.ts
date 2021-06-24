@@ -1,7 +1,7 @@
 import { Column, CreateDateColumn, Entity, PrimaryColumn, UpdateDateColumn } from "typeorm";
 import { v4 as uuid } from 'uuid'
 
-@Entity()
+@Entity('tags')
 export class Tag {
 
     @PrimaryColumn()
@@ -11,10 +11,10 @@ export class Tag {
     name: string;
 
     @CreateDateColumn()
-    createdAt: Date;
+    created_at: Date;
 
     @UpdateDateColumn()
-    updatedAt: Date;
+    updated_at: Date;
 
     constructor() {
         if (!this.id) {

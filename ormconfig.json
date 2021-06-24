@@ -5,7 +5,7 @@
    "username": "root",
    "password": "feras",
    "database": "nlwvaloriza",
-   "synchronize": true,
+   "synchronize": false,
    "logging": false,
    "migrations": [
       "src/database/migration/*.ts"

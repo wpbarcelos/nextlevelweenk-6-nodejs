@@ -2,26 +2,25 @@ import jwt from 'jsonwebtoken'
 import { secretKey } from '../config/auth';
 
 import { Request, Response, NextFunction } from 'express'
+import { getCustomRepository } from 'typeorm';
+import { UserRepository } from '../repositories/UserRepository';
 
-export function ensureAdmin(request: Request, response: Response, next: NextFunction) {
+export async function ensureAdmin(request: Request, response: Response, next: NextFunction) {
 
 
-    const token = request.headers.authorization.replace('Bearer ', '');
+    const { user_id } = request;
 
+    const userRepository = getCustomRepository(UserRepository)
 
-    try {
+    const admin = await userRepository.findOne({ id: user_id, admin: true })
 
-        const verify = jwt.verify(token, secretKey)
-
-        request.user_id = verify.sub;
-
+    if (admin) {
         return next();
-
-    } catch (error) {
-
-        throw new Error('Unauthorized');
     }
 
+    return response.status(401).json({
+        error: "Unauthorized"
+    })
 
 
 
